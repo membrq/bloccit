@@ -23,6 +23,9 @@ RSpec.describe User, type: :model do
     end
 
     it "should format a valid user's name" do
+      badly_formatted_name = "bLoc user"
+      user.name = badly_formatted_name
+      user.save!
       expect(user.name).to eq "Bloc User"
     end
   end

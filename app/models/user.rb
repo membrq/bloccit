@@ -17,11 +17,12 @@ class User < ActiveRecord::Base
 
   def format_user_name
     array = []
-    
-    name.each do |user|
-    user = name.split(" ")
-    array << user.capitalize
+
+    unless name.nil?
+      name.split.each do |user|
+        array << user.capitalize
+      end
+      self.name = array.join(" ")
     end
-    array.join(" ")
   end
 end
