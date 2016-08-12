@@ -12,7 +12,7 @@ RSpec.describe TopicsController, type: :controller do
 
     it "assigns my_topic to @topics" do
       get :index
-      expect(assigns(:topics)).to eq(my_topic)
+      expect(assigns(:topics)).to eq([my_topic])
     end
   end
 
@@ -70,7 +70,7 @@ RSpec.describe TopicsController, type: :controller do
   describe "GET edit" do
     it "returns http success" do
       get :edit, {id: my_topic.id}
-      expect(response).to have_http_success(:success)
+      expect(response).to have_http_status(:success)
     end
 
     it "renders the #edit view" do
