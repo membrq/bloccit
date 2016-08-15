@@ -19,6 +19,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
 
     if @topic.save
+      @topic.labels = Label.update_labels(params[:topic][:labels])
       flash[:notice] = "Topic was saved successfully."
       redirect_to @topic
     else
@@ -36,6 +37,7 @@ class TopicsController < ApplicationController
     @topic.assign_attributes(topic_params)
 
     if @topic.save
+      @topic.labels = Label.update_labels(params[:topic][:labels])
       flash[:notice] = "Topic was updated successfully."
       redirect_to @topic
     else
@@ -67,5 +69,5 @@ class TopicsController < ApplicationController
       flash[:alert] = "You must be an admin to do that."
       redirect_to topics_path
     end
-  end 
+  end
 end
