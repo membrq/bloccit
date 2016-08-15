@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :require_sign_in, except: :show
-  before_action :authorize_create_update, only: [:new, :create, :update, :edit]
+  before_action :authorize_update, only: [:update, :edit]
   before_action :authorize_delete, only: :destroy
 
   def show
@@ -64,7 +64,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body)
   end
 
-  def authorize_create_update
+  def authorize_update
     post = Post.find(params[:id])
 
     unless current_user == post.user || current_user.admin? || current_user.moderator?
