@@ -23,6 +23,9 @@
             submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
             <%= post.comments.count %> comments
           </small>
+          <small>
+          <!--  <%= render partial: 'comments/comment', locals: {comment: @post.comment} %> -->
+          </small>
         </div>
       </div>
     <% end %>
