@@ -24,13 +24,18 @@
             <%= post.comments.count %> comments
           </small>
           <small>
-          <!--  <%= render partial: 'comments/comment', locals: {comment: @post.comment} %> -->
+          <%= render @topic.comments %>
           </small>
         </div>
       </div>
     <% end %>
+    <div>
+      <% if current_user %>
+        <%= render 'comments/form_topic', comment: Comment.new, topic: @topic %>
+      <% end %>
+    </div>
   </div>
-  <% if current_user %>
+  <% if user_is_authorized_for_topics? %>
     <div class="col-md-4">
       <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
     </div>
