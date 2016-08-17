@@ -24,14 +24,16 @@
             <%= post.comments.count %> comments
           </small>
           <small>
-          <%= render @topic.comments %>
+          <% @topic.comments.each do |comment| %>
+            <%= render partial: 'comments/comment_topic', locals: {comment: comment} %>
+          <% end %>
           </small>
         </div>
       </div>
     <% end %>
     <div>
       <% if current_user %>
-        <%= render 'comments/form_topic', comment: Comment.new, topic: @topic %>
+        <%= render 'comments/form', comment: Comment.new, commentable: @topic %>
       <% end %>
     </div>
   </div>
