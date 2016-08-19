@@ -25,7 +25,7 @@
           </small>
           <small>
           <% @topic.comments.each do |comment| %>
-            <%= render partial: 'comments/comment_topic', locals: {comment: comment} %>
+            <%= render partial: 'comments/comment', locals: {comment_source: @topic, comment: comment} %>
           <% end %>
           </small>
         </div>
