@@ -12,9 +12,23 @@
       <div class="media-body">
         <h2 class="media-heading"><%= @user.name %></h2>
         <small>
-          <%= pluralize(@user.posts.count, 'post') %>,
-          <%= pluralize(@user.comments.count, 'comment') %>
+          <% if @user.posts.any? %>
+            <%= pluralize(@user.posts.count, 'post') %>,
+            <%= pluralize(@user.comments.count, 'comment') %>
+          <% else %>
+            <%= "#{@user.name} has not submitted any posts yet." %>
+          <% end %>
         </small>
+        <% if @user.favorites.any? %>
+          <ul> <% @user.favorites.each do |f| %>
+              <li> <%= f.post.user %>
+                   <%= image_tag f.post.user.avatar_url(128), class: 'media-object' %>
+                   <%= f.post.points %>
+                   <%= f.comments.post.user %> </li>
+          </ul>
+        <% else %>
+          <%= "#{@user.name} has not favorited any posts yet." %>
+        <% end %>
       </div>
     </div>
   </div>
