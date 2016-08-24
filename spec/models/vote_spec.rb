@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Vote, type: :model do
   let(:topic) {create(:topic)}
   let(:user) {create(:user)}
-  let(:post) {create(:post)}
-  let(:vote) {create(:vote)}
+  let(:my_post) {create(:post)}
+  let(:vote) {create(:vote, post: my_post)}
 
   it {is_expected.to belong_to(:post)}
   it {is_expected.to belong_to(:user)}
@@ -18,7 +18,7 @@ RSpec.describe Vote, type: :model do
     end
 
     it "#update_post should call update_rank on post" do
-      expect(post).to receive(:update_rank).at_least(:once)
+      expect(my_post).to receive(:update_rank).at_least(:once)
       vote.save!
     end
   end
