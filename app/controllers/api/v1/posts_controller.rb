@@ -13,7 +13,7 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
 
   def create
-    topic = Topic.find(params[:id])
+    topic = Topic.find(params[:topic_id])
     post = topic.posts.new(post_params)
     post.user = @current_user
     #post = Post.new(post_params)
